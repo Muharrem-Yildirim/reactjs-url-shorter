@@ -14,8 +14,6 @@ async function main() {
   );
 }
 
-main();
-
 const apiLimiter = rateLimit({
   windowMs: 60 * 1000, // 1 minutes
   max: 5,
@@ -66,7 +64,7 @@ const app = express()
     });
   })
   .use(express.static(path.join("build")))
-  .listen(process.env.PORT || 1337);
+  .listen(process.env.PORT || 1337, () => main());
 
 function generateShortUri(req) {
   const rand = uuid().replace("-", "").slice(0, 7);
