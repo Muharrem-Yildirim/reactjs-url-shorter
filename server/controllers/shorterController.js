@@ -19,8 +19,6 @@ const insert = async (req, res, next) => {
     key: shortUrl.key,
   });
 
-  console.log(shortUrl);
-
   model
     .save()
     .then(() => {
