@@ -1,10 +1,10 @@
 const urlModel = require("../models/urlModel"),
   validator = require("validator"),
-  { generateShortUri } = require("../utils");
+  { generateShortUrl, getValidUrl } = require("../utils");
 
 const insert = async (req, res, next) => {
   const originalUrl = req.body?.url || "",
-    shortUrl = await generateShortUri(req);
+    shortUrl = await generateShortUrl(req);
 
   if (!validator.isURL(originalUrl)) {
     res.status(400).send({
@@ -14,8 +14,10 @@ const insert = async (req, res, next) => {
     return;
   }
 
+  const validUrl = getValidUrl(originalUrl);
+
   let model = new urlModel({
-    originalUrl: originalUrl,
+    originalUrl: validUrl,
     key: shortUrl.key,
   });
 
@@ -23,7 +25,7 @@ const insert = async (req, res, next) => {
     .save()
     .then(() => {
       res.send({
-        originalUrl: originalUrl,
+        originalUrl: validUrl,
         shortUrl: shortUrl.fullUrl,
       });
     })
@@ -42,7 +44,7 @@ const get = (req, res, next) => {
       return;
     }
 
-    const { originalUrl } = rows[0];
+    const { originalUrl } = getValidUrl(rows[0]);
 
     res.redirect(originalUrl);
   });
