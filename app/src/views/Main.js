@@ -9,14 +9,16 @@ import {
   InputAdornment,
   Divider,
 } from "@mui/material";
-import ShortenedLinkList from "./ShortenedLinkList";
-import { saveHistory, clearHistory } from "../utils";
 
+import ShortenedLinkList from "../components/ShortenedLinkList";
 import CenteredButton from "../styles/CenteredButton";
+
+import { saveHistory, clearHistory } from "../utils";
 import axios from "../axios";
+
 import validator from "validator";
 
-export default class Cardd extends React.Component {
+export default class Main extends React.Component {
   constructor(props) {
     super(props);
 
@@ -57,12 +59,9 @@ export default class Cardd extends React.Component {
           };
         });
 
-        console.log(data);
-
         listRef.reload();
       })
       .catch((err) => {
-        console.log(err.response.data);
         alert(
           err.response?.data?.message ||
             err.response.data ||
@@ -108,17 +107,10 @@ export default class Cardd extends React.Component {
       <Card sx={{ minWidth: 275 }}>
         <CardContent>
           <Typography variant="h6">Please enter url to short link.</Typography>
-          {/* <Typography variant="h4">Please enter url to short link.</Typography>
-        <Typography variant="p">Please enter url to short link.</Typography> */}
           <TextField
             fullWidth
             style={{ marginTop: 10 }}
             placeholder="https://example.com"
-            // startAdornment={
-            //   <InputAdornment position="start">
-            //     {document.location.host}/
-            //   </InputAdornment>
-            // }
             disabled={this.state.waitingResponse}
             onChange={this.onInputChange}
             value={this.state.url || ""}

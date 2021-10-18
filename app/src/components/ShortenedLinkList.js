@@ -43,7 +43,7 @@ const ShortenedLinkList = React.forwardRef((props, ref) => {
         subheader={<ListSubheader>Shortened links history</ListSubheader>}
       >
         {history.map(function (el, idx) {
-          return <ShortenedLink el={el} idx={idx} />;
+          return <ShortenedLink el={el} idx={idx} key={idx} />;
         })}
       </List>
       <div

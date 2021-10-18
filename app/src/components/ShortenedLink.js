@@ -1,7 +1,5 @@
 import React from "react";
-import ListItem from "@mui/material/ListItem";
-import ListItemIcon from "@mui/material/ListItemIcon";
-import ListItemText from "@mui/material/ListItemText";
+import { ListItem, ListItemIcon, ListItemText } from "@mui/material";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 
 export default function ShortenedLink({ el, idx }) {
@@ -26,12 +24,6 @@ export default function ShortenedLink({ el, idx }) {
           </span>
         }
       />
-      {/* <Switch
-        edge="end"
-        inputProps={{
-          "aria-labelledby": "switch-list-label-bluetooth",
-        }}
-      /> */}
     </ListItem>
   );
 }

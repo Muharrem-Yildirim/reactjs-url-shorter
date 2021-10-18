@@ -1,5 +1,5 @@
 import "./App.scss";
-import Main from "./components/Main";
+import Main from "./views/Main";
 import Grid from "@mui/material/Grid";
 import React from "react";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
@@ -22,11 +22,11 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <div className="App">
-        <Grid sm={5}>
+      <Grid container className="App">
+        <Grid item lg={5} md={12}>
           <Main />
         </Grid>
-      </div>
+      </Grid>
     </ThemeProvider>
   );
 }
