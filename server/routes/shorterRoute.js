@@ -10,6 +10,6 @@ const apiLimiter = rateLimit({
 
 router.set("trust proxy", 1); // without this rate-limiter won't work
 
-router.use(apiLimiter).post("/short", insert).get("/:url", get);
+router.post("/short", apiLimiter, insert).get("/:url", get);
 
 module.exports = router;
