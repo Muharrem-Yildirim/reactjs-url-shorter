@@ -44,9 +44,9 @@ const get = (req, res, next) => {
       return;
     }
 
-    const { originalUrl } = getValidUrl(rows[0]);
+    const { originalUrl } = rows[0];
 
-    res.redirect(originalUrl);
+    res.redirect(getValidUrl(originalUrl));
   });
 };
 
