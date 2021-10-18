@@ -16,7 +16,15 @@ import CenteredButton from "../styles/CenteredButton";
 import { saveHistory, clearHistory } from "../utils";
 import axios from "../axios";
 
+import styled from "styled-components";
 import validator from "validator";
+
+const CustomizedCard = styled(Card)`
+  @media (max-width: 1200px) {
+    border: 0px !important;
+    box-shadow: none;
+  }
+`;
 
 export default class Main extends React.Component {
   constructor(props) {
@@ -104,7 +112,7 @@ export default class Main extends React.Component {
 
   render() {
     return (
-      <Card sx={{ minWidth: 275 }}>
+      <CustomizedCard sx={{ minWidth: 275 }}>
         <CardContent>
           <Typography variant="h6">Please enter url to short link.</Typography>
           <TextField
@@ -169,7 +177,7 @@ export default class Main extends React.Component {
             onClickClear={this.onClickClear}
           />
         </CardContent>
-      </Card>
+      </CustomizedCard>
     );
   }
 }
