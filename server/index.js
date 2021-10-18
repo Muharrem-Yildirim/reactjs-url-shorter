@@ -65,7 +65,7 @@ const app = express()
       res.redirect(originalUrl);
     });
   })
-  .use(express.static(path.join("../app", "build")))
+  .use(express.static(path.join("build")))
   .listen(process.env.PORT || 1337);
 
 function generateShortUri(req) {
