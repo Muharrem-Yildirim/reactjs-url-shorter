@@ -1,11 +1,10 @@
-const ShortenedUrlModel = require("../models/ShortenedUrlModel"),
+const urlModel = require("../models/urlModel"),
   validator = require("validator"),
-  { uuid } = require("uuidv4"),
   { generateShortUri } = require("../utils");
 
-const insert = (req, res, next) => {
+const insert = async (req, res, next) => {
   const originalUrl = req.body?.url || "",
-    shortUrl = generateShortUri(req);
+    shortUrl = await generateShortUri(req);
 
   if (!validator.isURL(originalUrl)) {
     res.status(400).send({
@@ -15,10 +14,12 @@ const insert = (req, res, next) => {
     return;
   }
 
-  let model = new ShortenedUrlModel({
+  let model = new urlModel({
     originalUrl: originalUrl,
     key: shortUrl.key,
   });
+
+  console.log(shortUrl);
 
   model
     .save()
@@ -37,7 +38,7 @@ const insert = (req, res, next) => {
 };
 
 const get = (req, res, next) => {
-  ShortenedUrlModel.find({ key: req.params?.url }).then((rows) => {
+  urlModel.find({ key: req.params?.url }).then((rows) => {
     if (rows.length === 0) {
       res.redirect("/");
       return;
@@ -49,4 +50,14 @@ const get = (req, res, next) => {
   });
 };
 
-module.exports = { get, insert };
+const isKeyUsing = (key) => {
+  return new Promise((resolve, reject) => {
+    urlModel.count({ key: key }).then((count, err) => {
+      if (err) reject(err);
+
+      resolve(count > 0);
+    });
+  });
+};
+
+module.exports = { get, insert, isKeyUsing };

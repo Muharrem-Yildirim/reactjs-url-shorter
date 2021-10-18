@@ -1,12 +1,16 @@
-const { uuid } = require("uuidv4");
+const randomstring = require("randomstring");
 
-function generateShortUri(req) {
-  const rand = uuid().replace("-", "").slice(0, 7);
+async function generateShortUri(req) {
+  const key = randomstring.generate(7);
 
-  return {
-    fullUrl: req.protocol + "://" + req.get("host") + "/" + rand,
-    key: rand,
-  };
+  if (await require("./controllers/shorterController").isKeyUsing(key)) {
+    return generateShortUri(req);
+  } else {
+    return {
+      fullUrl: req.protocol + "://" + req.get("host") + "/" + key,
+      key: key,
+    };
+  }
 }
 
 module.exports = { generateShortUri };
