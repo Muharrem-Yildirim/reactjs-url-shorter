@@ -14,6 +14,7 @@ const clearHistory = () => {
 };
 
 const removeHttp = (str) => {
+  if (str === null) return "";
   return str.replace(/^http(s?):\/\//i, "");
 };
 
