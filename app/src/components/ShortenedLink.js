@@ -1,6 +1,7 @@
 import React from "react";
 import { ListItem, ListItemIcon, ListItemText } from "@mui/material";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
+import { removeHttp } from "../utils";
 
 export default function ShortenedLink({ el, idx }) {
   return (
@@ -16,11 +17,11 @@ export default function ShortenedLink({ el, idx }) {
               flexWrap: "wrap",
             }}
           >
-            {el[0]}{" "}
+            {removeHttp(el[0])}{" "}
             <KeyboardArrowRightIcon
               style={{ marginLeft: 10, marginRight: 10 }}
             />{" "}
-            {el[1]}
+            {removeHttp(el[1])}
           </span>
         }
       />

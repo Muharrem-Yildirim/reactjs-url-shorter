@@ -13,4 +13,8 @@ const clearHistory = () => {
   localStorage.setItem("shorten_history", JSON.stringify([]));
 };
 
-export { getHistory, saveHistory, clearHistory };
+const removeHttp = (str) => {
+  return str.replace(/^http(s?):\/\//i, "");
+};
+
+export { getHistory, saveHistory, clearHistory, removeHttp };
