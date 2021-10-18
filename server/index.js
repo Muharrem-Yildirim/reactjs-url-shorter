@@ -15,7 +15,6 @@ const app = express()
   .use(cors())
   .use(bodyParser.json())
   .set("json spaces", 2)
-  .set("trust proxy", 1) // without this rate-limiter won't work
   .use(shorterRoute)
   .use((err, req, res, next) => res.status(500).send("Internal server error."))
   .use(express.static(path.join("build")))

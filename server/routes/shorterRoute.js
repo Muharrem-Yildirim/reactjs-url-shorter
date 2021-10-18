@@ -8,6 +8,8 @@ const apiLimiter = rateLimit({
   message: "Too many requests.",
 });
 
+router.set("trust proxy", 1); // without this rate-limiter won't work
+
 router.use(apiLimiter).post("/short", insert).get("/:url", get);
 
 module.exports = router;
