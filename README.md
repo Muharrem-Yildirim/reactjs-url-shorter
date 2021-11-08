@@ -1,6 +1,6 @@
 # reactjs-url-shorter
 
-<p>URL shorter Made with React.js + Node.js + MongoDD. Available at: <a href="https://reactjs-multiplayer-pixelart.herokuapp.com/">https://reactjs-multiplayer-pixelart.herokuapp.com</a></p>
+<p>URL shorter Made with React.js + Node.js + MongoDB. Available at: <a href="https://reactjs-url-shorter.herokuapp.com/">https://reactjs-url-shorter.herokuapp.com/</a></p>
 
 <table>
   <tr>
